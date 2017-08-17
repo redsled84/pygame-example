@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 
 pygame.init()
 
@@ -42,6 +42,9 @@ def movement():
 	if KEYS['w']:
 		player[1] -= speed
 
+food = [random.randint(0, DIMENSIONS[0]-tile_size), \
+	random.randint(0, DIMENSIONS[1]-tile_size)]
+
 while is_running:
 	for event in pygame.event.get():
 		if event.type == pygame.KEYDOWN:
@@ -53,10 +56,20 @@ while is_running:
 		if event.type == pygame.QUIT:
 			is_running = False
 
+	# Other updates
+	if food[0] < player[0] + tile_size and \
+	food[0] + tile_size > player[0] and \
+	food[1] < player[1] + tile_size and \
+	food[1] + tile_size > player[1]:
+		food[0] = random.randint(0, DIMENSIONS[0]-tile_size)
+		food[1] = random.randint(0, DIMENSIONS[1]-tile_size)
+
 	SCREEN.fill((255,255,255))
 
 	# Draw here
 	pygame.draw.rect(SCREEN, (255,0,0), (player[0], player[1], \
+		tile_size, tile_size))
+	pygame.draw.rect(SCREEN, (200,200,0), (food[0], food[1], \
 		tile_size, tile_size))
 
 	pygame.display.update()
