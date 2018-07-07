@@ -47,8 +47,8 @@ def movement():
 	if KEYS['w']:
 		player[1] -= speed
 
-food = [random.randint(0, DIMENSIONS[0]-tile_size), \
-	random.randint(0, DIMENSIONS[1]-tile_size)]
+food = [random.randint(0, DIMENSIONS[0] - tile_size), \
+	random.randint(0, DIMENSIONS[1] - tile_size)]
 
 def updateEvents(event):
 	if event.type == pygame.KEYDOWN:
@@ -68,8 +68,8 @@ def updatePlayerFoodCollision():
 	food[1] < player[1] + tile_size and \
 	food[1] + tile_size > player[1]:
 		# Reset the food's position to another random pos
-		food[0] = random.randint(0, DIMENSIONS[0]-tile_size)
-		food[1] = random.randint(0, DIMENSIONS[1]-tile_size)
+		food[0] = random.randint(0, DIMENSIONS[0] - tile_size)
+		food[1] = random.randint(0, DIMENSIONS[1] - tile_size)
 
 while is_running:
 	for event in pygame.event.get():
