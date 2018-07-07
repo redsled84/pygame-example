@@ -12,7 +12,7 @@ CLOCK      = pygame.time.Clock()
 TARGET_FPS = 60
 is_running = True
 
-pygame.display.set_caption('Simple Game')
+pygame.display.set_caption('Simple Demo | Press \'Esc\' to close')
 
 # Dictionary for key input detection
 KEYS = {
@@ -34,6 +34,7 @@ def changeKeys(key, value):
 
 # Width and height of player and food
 tile_size = 24
+# Player position
 player = [0, 0]
 speed = 5
 
@@ -47,10 +48,12 @@ def movement():
 	if KEYS['w']:
 		player[1] -= speed
 
+# Food position
 food = [random.randint(0, DIMENSIONS[0] - tile_size), \
 	random.randint(0, DIMENSIONS[1] - tile_size)]
 
 def updateEvents(event):
+	global is_running
 	if event.type == pygame.KEYDOWN:
 		changeKeys(event.key, True)
 
